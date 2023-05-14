@@ -18,14 +18,16 @@ function App() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    const newTodo: Todo = {
-      inputValue: inputValue,
-      id: todos.length,
-      checked: false,
-    }
+    if(inputValue){
+      const newTodo: Todo = {
+        inputValue: inputValue,
+        id: todos.length,
+        checked: false,
+      }
 
-    setTodos([newTodo, ...todos]);
-    setInputValue("");
+      setTodos([newTodo, ...todos]);
+      setInputValue("");
+    }
   };
 
   const handleEdit = (id: number, inputValue: string) => {
