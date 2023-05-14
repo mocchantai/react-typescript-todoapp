@@ -25,7 +25,7 @@ function App() {
     }
 
     setTodos([newTodo, ...todos]);
-    setInputValue('');
+    setInputValue("");
   };
 
   const handleEdit = (id: number, inputValue: string) => {
@@ -51,12 +51,18 @@ function App() {
     setTodos(newTodos);
   }
 
+  const handleDelete = (id: number) => {
+    const newTodos = todos.filter((todo) => todo.id !== id );
+
+    setTodos(newTodos);
+  }
+
   return (
     <div className='App'>
       <div>
         <h2>Todoリスト with Typescript</h2>
         <form action="" onSubmit={(e) => {handleSubmit(e)}}>
-          <input type="text" onChange={(e) => {handleChange(e)}} className='inputText'/>
+          <input type="text" onChange={(e) => {handleChange(e)}} className='inputText' value={inputValue}/>
           <input type="submit" value="作成" className='submitButton' />
         </form>
         <ul className='todoList'>
@@ -73,6 +79,7 @@ function App() {
                 type="checkbox"
                 onChange={(e) => {handleChecked(todo.id, todo.checked)}}
               />
+              <button onClick={() => {handleDelete(todo.id)}}><i className="fa-solid fa-trash"></i></button>
             </li>
           ))}
         </ul>
